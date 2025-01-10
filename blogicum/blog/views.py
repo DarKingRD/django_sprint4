@@ -233,9 +233,7 @@ class CategoryPostsView(generic.ListView):
 
 # Создание комментария
 class CommentCreateView(LoginRequiredMixin, generic.CreateView):
-    """
-    Позволяет авторизованным пользователям добавлять комментарии к постам.
-    """
+    """Позволяет авторизованным пользователям доб. комментарии к постам."""
 
     model = Comment
     form_class = CommentForm  # Форма для создания комментария
@@ -262,9 +260,7 @@ class CommentCreateView(LoginRequiredMixin, generic.CreateView):
 class CommentEditView(LoginRequiredMixin,
                       UserPassesTestMixin,
                       generic.UpdateView):
-    """
-    Позволяет авторизованным пользователям редактировать свои комментарии.
-    """
+    """Позволяет авторизованным пользователям ред. свои комментарии."""
 
     model = Comment
     form_class = CommentForm  # Форма для редактирования комментария
