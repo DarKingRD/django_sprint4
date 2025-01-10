@@ -18,6 +18,7 @@ class ProfileView(generic.ListView):
     Если пользователь просматривает свой профиль, отображаются все посты.
     Если другой пользователь, отображаются только опубликованные посты.
     """
+
     template_name = "blog/profile.html"
     context_object_name = "page_obj"  # Имя переменной контекста для пагинации
     paginate_by = 10  # Количество постов на странице
@@ -60,6 +61,7 @@ class ProfileEditView(LoginRequiredMixin, generic.UpdateView):
     Позволяет пользователю редактировать свой профиль.
     Доступно только авторизованным пользователям.
     """
+
     model = User
     form_class = UserProfileForm  # Форма для редактирования профиля
     template_name = "blog/user.html"
@@ -77,9 +79,8 @@ class ProfileEditView(LoginRequiredMixin, generic.UpdateView):
 
 # Список всех постов
 class PostListView(generic.ListView):
-    """
-    Отображает список всех опубликованных постов с пагинацией.
-    """
+    """Отображает список всех опубликованных постов с пагинацией."""
+
     template_name = "blog/index.html"
     context_object_name = "page_obj"
     paginate_by = 10  # Количество постов на странице
@@ -99,10 +100,8 @@ class PostListView(generic.ListView):
 
 # Детали поста
 class PostDetailView(generic.DetailView):
-    """
-    Отображает детали поста, включая комментарии.
-    Если пост не опубликован или недоступен, возвращает 404.
-    """
+    """Отображает детали поста, включая комментарии."""
+
     model = Post
     template_name = "blog/detail.html"
     pk_url_kwarg = "post_id"
@@ -129,9 +128,8 @@ class PostDetailView(generic.DetailView):
 
 # Создание поста
 class PostCreateView(LoginRequiredMixin, generic.CreateView):
-    """
-    Позволяет авторизованным пользователям создавать новые посты.
-    """
+    """Позволяет авторизованным пользователям создавать новые посты."""
+
     model = Post
     form_class = PostForm  # Форма для создания поста
     template_name = "blog/create.html"
@@ -150,9 +148,8 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
 
 # Редактирование поста
 class PostEditView(LoginRequiredMixin, generic.UpdateView):
-    """
-    Позволяет авторизованным пользователям редактировать свои посты.
-    """
+    """Позволяет авторизованным пользователям редактировать свои посты."""
+
     model = Post
     form_class = PostForm  # Форма для редактирования поста
     template_name = "blog/create.html"
@@ -185,9 +182,8 @@ class PostEditView(LoginRequiredMixin, generic.UpdateView):
 class PostDeleteView(LoginRequiredMixin,
                      UserPassesTestMixin,
                      generic.DeleteView):
-    """
-    Позволяет авторизованным пользователям удалять свои посты.
-    """
+    """Позволяет авторизованным пользователям удалять свои посты."""
+
     model = Post
     template_name = "blog/create.html"
     pk_url_kwarg = "post_id"
@@ -204,9 +200,8 @@ class PostDeleteView(LoginRequiredMixin,
 
 # Посты по категориям
 class CategoryPostsView(generic.ListView):
-    """
-    Отображает список постов в определенной категории.
-    """
+    """Отображает список постов в определенной категории."""
+
     template_name = "blog/category.html"
     context_object_name = "post_list"
     paginate_by = 10  # Количество постов на странице
@@ -241,6 +236,7 @@ class CommentCreateView(LoginRequiredMixin, generic.CreateView):
     """
     Позволяет авторизованным пользователям добавлять комментарии к постам.
     """
+
     model = Comment
     form_class = CommentForm  # Форма для создания комментария
     template_name = "includes/comments.html"
@@ -269,6 +265,7 @@ class CommentEditView(LoginRequiredMixin,
     """
     Позволяет авторизованным пользователям редактировать свои комментарии.
     """
+
     model = Comment
     form_class = CommentForm  # Форма для редактирования комментария
     template_name = "blog/comment.html"
@@ -293,9 +290,8 @@ class CommentEditView(LoginRequiredMixin,
 class CommentDeleteView(LoginRequiredMixin,
                         UserPassesTestMixin,
                         generic.DeleteView):
-    """
-    Позволяет авторизованным пользователям удалять свои комментарии.
-    """
+    """Позволяет авторизованным пользователям удалять свои комментарии."""
+
     model = Comment
     template_name = "blog/comment.html"
     pk_url_kwarg = "comment_id"
