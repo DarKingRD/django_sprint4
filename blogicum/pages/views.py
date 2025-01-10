@@ -13,7 +13,7 @@ class RulesView(TemplateView):
 
 
 # Обработчик ошибки CSRF (403)
-def csrf_failure(request, reason=''):
+def csrf_failure(request, exception=None, reason=''):
     template = 'pages/403csrf.html'
     return render(request, template, status=403)
 
